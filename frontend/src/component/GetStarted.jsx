@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Typewriter } from 'react-simple-typewriter';
 
+
 const GetStartedPage = () => {
     return (
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-400 to-purple-600">

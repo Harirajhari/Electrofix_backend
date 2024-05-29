@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Backend_URL from "./link"
 
 const Login = () => {
     const navigate = useNavigate();
@@ -28,12 +29,12 @@ const Login = () => {
         setError(''); // Reset error message before submission
         try {
             if (isSignUp) {
-                const response = await axios.post('http://localhost:3000/user/signup', formData);
+                const response = await axios.post(`${Backend_URL}/user/signup`, formData);
                 console.log('Sign Up Response:', response.data);
                 // Handle successful signup (e.g., redirect, show message)
             } else {
                 const loginData = { email: formData.email, password: formData.password };
-                const response = await axios.post('http://localhost:3000/user/login', loginData, { withCredentials: true });
+                const response = await axios.post(`${Backend_URL}/user/login`, loginData, { withCredentials: true });
                 console.log('Login Response:', response.data);
                 navigate("/dashboard");
                 // Handle successful login (e.g., save token, redirect)

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Backend_URL from "./link"
 
 const AskQuestion = () => {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ const AskQuestion = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:3000/item/add', formData, {
+      const response = await axios.post(`${Backend_URL}/item/add`, formData, {
         withCredentials: true,
         headers: {
           'Content-Type': 'multipart/form-data',

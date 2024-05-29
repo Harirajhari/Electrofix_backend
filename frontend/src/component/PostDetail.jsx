@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import Backend_URL from "./link"
 
 const PostDetail = () => {
   const { postId } = useParams();
@@ -12,7 +13,7 @@ const PostDetail = () => {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/item/${postId}`);
+        const response = await axios.get(`${Backend_URL}/item/${postId}`);
         setPost(response.data.post);
       } catch (error) {
         console.error('Error fetching post:', error);
@@ -31,7 +32,7 @@ const PostDetail = () => {
 
     try {
       await axios.post(
-        `http://localhost:3000/reply/${postId}`,
+        `${Backend_URL}/reply/${postId}`,
         { content: newComment },
         { withCredentials: true }
       );
@@ -39,7 +40,7 @@ const PostDetail = () => {
       setCommentError('');
 
       // Fetch the updated post to include the new comment
-      const response = await axios.get(`http://localhost:3000/item/${postId}`);
+      const response = await axios.get(`${Backend_URL}/item/${postId}`);
       setPost(response.data.post);
     } catch (error) {
       console.error('Error adding comment:', error);

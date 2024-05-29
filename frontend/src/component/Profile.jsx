@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Backend_URL from "./link"
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ const Profile = () => {
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/user/details', { withCredentials: true });
+        const response = await axios.get(`${Backend_URL}/user/details`, { withCredentials: true });
         setUserDetails(response.data);
       } catch (error) {
         console.error('Error fetching user details:', error);
@@ -29,7 +30,7 @@ const Profile = () => {
 
     const fetchUserPosts = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/item/user/posts', { withCredentials: true });
+        const response = await axios.get(`${Backend_URL}/item/user/posts`, { withCredentials: true });
         setUserPosts(response.data);
       } catch (error) {
         console.error('Error fetching user posts:', error);
@@ -63,7 +64,7 @@ const Profile = () => {
       }
       formData.append('tags', editedTags.split(',').map(tag => tag.trim())); // Convert tags string to array
 
-      const response = await axios.put(`http://localhost:3000/item/update/${postId}`, formData, {
+      const response = await axios.put(`${Backend_URL}/item/update/${postId}`, formData, {
         withCredentials: true,
         headers: {
           'Content-Type': 'multipart/form-data'
@@ -79,7 +80,7 @@ const Profile = () => {
 
   const handleDeleteClick = async (postId) => {
     try {
-      await axios.delete(`http://localhost:3000/item/delete/${postId}`, { withCredentials: true });
+      await axios.delete(`${Backend_URL}/item/delete/${postId}`, { withCredentials: true });
       setUserPosts(userPosts.filter(post => post._id !== postId));
     } catch (error) {
       console.error('Error deleting post:', error);

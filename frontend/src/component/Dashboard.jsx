@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { CgProfile } from "react-icons/cg";
+import Backend_URL from "./link"
 
 
 const Dashboard = () => {
@@ -13,7 +14,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/item/all');
+        const response = await axios.get(`${Backend_URL}/item/all`);
         setPosts(response.data.posts);
       } catch (error) {
         console.error('Error fetching posts:', error);
