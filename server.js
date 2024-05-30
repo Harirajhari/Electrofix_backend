@@ -8,6 +8,7 @@ const userRoutes = require("./Routing/User");
 const PostRoutes = require("./Routing/PostItem");
 const like = require("./Routing/Likes")
 const reply = require("./Routing/Replys")
+const path = require("path")
 
 const app = express();
 app.use(express.json());
